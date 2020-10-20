@@ -1,4 +1,5 @@
 import random
+import time
 global collatz_list
 global count
 
@@ -29,29 +30,36 @@ def collatz_input():
 
 # Iterate and add to list...
 def collatz(number):
-
+    global most_steps
+    prev_num = number - 1
+    steps = 0
     while number != 1:
+
         if number % 2 == 0:
-            number = number / 2
+            number = int(number / 2)
         else:
             number = number * 3 + 1
 
-    if number == 1:
-        collatz_list.append(count)
-    #need elif time >> threshold
-    else:
-        print(f'Number {count} took too long to process!')
+        steps += 1
+
+        if number <= prev_num:
+            x = list[number-1][1]
+            steps += x
+            if steps > list[n-2][1]:
+                most_steps = n
+            break
+
+
+
+    return [n, steps]
+
 
 
 ##### Run Tests
 
-#collatz_input()
-
-
-count = 1
-collatz_list = []
-
+n = 1
+list = []
 
 while True:
-    collatz(count)
-    count += 1
+    list.append(collatz(n))
+    n += 1
